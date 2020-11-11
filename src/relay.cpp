@@ -43,7 +43,7 @@ RelayNode::RelayNode(const rclcpp::NodeOptions & node_options)
   pub_ = rclcpp_generic::GenericPublisher::create(
     get_node_topics_interface(), output_topic, type, 1);
   sub_ = rclcpp_generic::GenericSubscription::create(
-    get_node_topics_interface(), input_topic, output_topic, 1,
+    get_node_topics_interface(), input_topic, type, 1,
     [this](std::shared_ptr<rclcpp::SerializedMessage> msg) {
       auto msg_rcl = std::make_shared<rcl_serialized_message_t>(msg->get_rcl_serialized_message());
       pub_->publish(msg_rcl);
